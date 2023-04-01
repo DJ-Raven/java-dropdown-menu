@@ -1,5 +1,7 @@
 package raven.main;
 
+import raven.menu.MenuEvent;
+
 /**
  *
  * @author RAVEN
@@ -11,6 +13,12 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        menu1.setEvent(new MenuEvent() {
+            @Override
+            public void selected(int index, int subIndex) {
+                System.out.println(index + " " + subIndex);
+            }
+        });
     }
 
     /**

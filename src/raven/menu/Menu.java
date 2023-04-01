@@ -16,6 +16,15 @@ import net.miginfocom.swing.MigLayout;
 
 public class Menu extends JComponent {
 
+    public MenuEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MenuEvent event) {
+        this.event = event;
+    }
+
+    private MenuEvent event;
     private MigLayout layout;
     private String[][] menuItems = new String[][]{
         {"Dashboard"},
@@ -74,6 +83,10 @@ public class Menu extends JComponent {
                         hideMenu(item, index);
                         item.setSelected(false);
                     }
+                } else {
+                    if (event != null) {
+                        event.selected(index, 0);
+                    }
                 }
             }
         });
@@ -88,6 +101,14 @@ public class Menu extends JComponent {
         panel.setOpaque(false);
         for (int i = 1; i < length; i++) {
             MenuItem subItem = new MenuItem(menuItems[index][i], i, false);
+            subItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    if (event != null) {
+                        event.selected(index, subItem.getIndex());
+                    }
+                }
+            });
             subItem.initSubMenu(i, length);
             panel.add(subItem);
         }
