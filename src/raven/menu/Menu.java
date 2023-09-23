@@ -98,7 +98,7 @@ public class Menu extends JComponent {
     private void addSubMenu(MenuItem item, int index, int length, int indexZorder) {
         JPanel panel = new JPanel(new MigLayout("wrap 1, fillx, inset 0, gapy 0", "fill"));
         panel.setName(index + "");
-        panel.setOpaque(false);
+        panel.setBackground(new Color(18, 99, 63));
         for (int i = 1; i < length; i++) {
             MenuItem subItem = new MenuItem(menuItems[index][i], i, false);
             subItem.addActionListener(new ActionListener() {
